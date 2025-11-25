@@ -1,6 +1,7 @@
 # HackClub Slack migration utility
-A Python CLI to estimate the remaining downtime of HackClub Slack workspace
+A Python CLI to estimate the remaining downtime of the HackClub Slack workspace
 ![](https://imgur.com/FFHkFpm.png)
+![Hackatime Badge](https://hackatime-badge.hackclub.com/U08RQEP53HA/HC-Slack-Migration?label=Project%20time)
 ## Usage
 ### Cloning the repository
 - Clone the repository
