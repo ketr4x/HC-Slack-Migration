@@ -1,3 +1,4 @@
+import argparse
 import datetime
 import os
 import time
@@ -5,6 +6,7 @@ import requests
 from bs4 import BeautifulSoup
 from sqlalchemy import create_engine, select, Float, DateTime
 from sqlalchemy.orm import Mapped, mapped_column, DeclarativeBase, Session
+import parseargs
 
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -21,9 +23,17 @@ class Progress(Base):
 
 Base.metadata.create_all(engine)
 
+def parse_args():
+    parser = argparse.ArgumentParser(description='Monitor Hack Club Slack migration progress')
+    parser.add_argument('--url', type=str, default='https://are-we-there-yet.hackclub.com/',
+                        help='URL to monitor (default: https://are-we-there-yet.hackclub.com/)')
+    parser.add_argument('--delay', type=int, default=10, help='Delay between checks in seconds (default:10)')
+    return parser.parse_args()
+
 def main():
-    url = 'https://are-we-there-yet.hackclub.com/'
-    delay = 10
+    args = parse_args()
+    url = args.url
+    delay = args.delay
 
     while True:
         try:
