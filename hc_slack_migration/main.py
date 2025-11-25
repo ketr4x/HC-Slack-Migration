@@ -77,21 +77,26 @@ def main():
 
             clear_screen()
             print(f"Total progress: {progress_value * 100:.2f}%")
-            print(f"Average pace: {pace:.4f}%/hour / {(pace / 60):.4f}%/minute")
-            print(f"Last 10 minutes average pace: {pace_10min:.4f}%/hour / {(pace_10min / 60):.4f}%/minute")
-            print(
-                f"Migration completed in {f"{int((1 - progress_value) / pace)}"}h "
-                f"{int((((1 - progress_value) / pace) - int((1 - progress_value) / pace)) * 60)} min "
-                "at average pace"
-                if pace > 0 else "N/A"
-            )
-            print(
-                f"Migration completed in {f"{int((1 - progress_value) / pace_10min)}"}h "
-                f"{int((((1 - progress_value) / pace_10min) - int((1 - progress_value) / pace_10min)) * 60)} min "
-                "at last 10 minutes' average pace"
-                if pace_10min > 0 else "N/A"
-            )
+            print(f"Average pace: {pace*24:.4f}%/hour / {pace:.4f}%/hour / {(pace / 60):.4f}%/minute")
+            print(f"Last 10 minutes average pace: {pace_10min*24:.4f}%/hour / {pace_10min:.4f}%/hour / {(pace_10min / 60):.4f}%/minute")
+            if pace > 0:
+                remaining_hours = (1 - progress_value) / pace
+                days = int(remaining_hours // 24)
+                hours = int(remaining_hours % 24)
+                minutes = int((remaining_hours - int(remaining_hours)) * 60)
+                print(f"Migration completed in {f"{days}d " if days else ''}{f"{hours}h " if hours else ''}{f"{minutes}m" if minutes else ''} at average pace")
+            else:
+                print('N/A')
+            if pace_10min > 0:
+                remaining_hours_10 = (1 - progress_value) / pace_10min
+                days_10 = int(remaining_hours_10 // 24)
+                hours_10 = int(remaining_hours_10 % 24)
+                minutes_10 = int((remaining_hours_10 - int(remaining_hours_10)) * 60)
+                print(f"Migration completed in {f"{days_10}d " if days_10 else ''}{f"{hours_10}h " if hours_10 else ''}{f"{minutes_10}m" if minutes_10 else ''} at last 10 minutes' pace")
+            else:
+                print('N/A')
             time.sleep(delay)
+
         except (ValueError, IndexError) as e:
             print(f"Error parsing progress: {e}")
         except KeyboardInterrupt:
