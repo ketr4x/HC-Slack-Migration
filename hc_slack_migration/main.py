@@ -77,8 +77,8 @@ def main():
 
             clear_screen()
             print(f"Total progress: {progress_value * 100:.2f}%")
-            print(f"Average pace: {pace*24:.4f}%/hour / {pace:.4f}%/hour / {(pace / 60):.4f}%/minute")
-            print(f"Last 10 minutes average pace: {pace_10min*24:.4f}%/hour / {pace_10min:.4f}%/hour / {(pace_10min / 60):.4f}%/minute")
+            print(f"Average pace: {pace*24:.4f}%/day / {pace:.4f}%/hour / {(pace / 60):.4f}%/minute")
+            print(f"Last 10 minutes average pace: {pace_10min*24:.4f}%/day / {pace_10min:.4f}%/hour / {(pace_10min / 60):.4f}%/minute")
             if pace > 0:
                 remaining_hours = (1 - progress_value) / pace
                 days = int(remaining_hours // 24)
