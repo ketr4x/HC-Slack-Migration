@@ -6,7 +6,7 @@ import requests
 from bs4 import BeautifulSoup
 from sqlalchemy import create_engine, select, Float, DateTime
 from sqlalchemy.orm import Mapped, mapped_column, DeclarativeBase, Session
-import parseargs
+import argparse
 
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')

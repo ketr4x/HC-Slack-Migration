@@ -17,6 +17,7 @@ dependencies = [
     "beautifulsoup4",
     "sqlalchemy",
     "setuptools",
+    "argparse",
 ]
 
 [project.scripts]
