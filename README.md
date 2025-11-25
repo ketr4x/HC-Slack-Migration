@@ -2,10 +2,14 @@
 A Python CLI to estimate the remaining downtime of HackClub Slack workspace
 ## Usage
 ### Cloning the repository
-- `python -m pip install -r requirements.txt`
-- `python main.py`
-### Downloading a build from PyPi
-
+- Clone the repository
+- Install Python
+- Run `python -m pip install -r requirements.txt`
+- Run `python -m hc_slack_migration.main`
+### Downloading a build from PyPI
+- Install Python
+- Run `pip install hc-slack-migration`
+- Run `hc-slack-migration`
 ## License
 Copyright ketr4x, 2025. Licensed under BSD-3-Clause License.
 

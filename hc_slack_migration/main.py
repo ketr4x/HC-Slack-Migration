@@ -1,7 +1,6 @@
 import datetime
 import os
 import time
-
 import requests
 from bs4 import BeautifulSoup
 from sqlalchemy import create_engine, select, Float, DateTime
@@ -47,9 +46,6 @@ def main():
                 first = session.execute(select(Progress).order_by(Progress.date.asc())).scalars().first()
                 last = session.execute(select(Progress).order_by(Progress.date.desc())).scalars().first()
                 now = datetime.datetime.now()
-                elapsed = 0.0
-                if last and last.date:
-                    elapsed = (now - last.date).total_seconds()
                 new_progress = Progress(
                     date=now,
                     progress=progress_value
@@ -82,7 +78,7 @@ def main():
             clear_screen()
             print(f"Total progress: {progress_value * 100:.2f}%")
             print(f"Average pace: {pace:.4f}%/hour / {(pace / 60):.4f}%/minute")
-            print(f"Last 10 minutes average pace: {pace:.4f}%/hour / {(pace / 60):.4f}%/minute")
+            print(f"Last 10 minutes average pace: {pace_10min:.4f}%/hour / {(pace_10min / 60):.4f}%/minute")
             print(
                 f"Migration completed in {f"{int((1 - progress_value) / pace)}"}h "
                 f"{int((((1 - progress_value) / pace) - int((1 - progress_value) / pace)) * 60)} min "
@@ -102,5 +98,5 @@ def main():
             print("\nExiting...")
             break
 
-if True:
+if __name__ == "__main__":
     main()
