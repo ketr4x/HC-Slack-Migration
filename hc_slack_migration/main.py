@@ -85,6 +85,7 @@ def main():
                     progress_diff = last_recent.progress - first_recent.progress
                     pace_10min = (progress_diff / time_diff * 3600) if time_diff > 0 else 0.0
 
+                completed = int(last.progress) == 1
                 session.add(new_progress)
                 session.commit()
 
